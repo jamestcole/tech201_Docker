@@ -1,5 +1,13 @@
 # tech201_Docker
 
+## Why use Docker
+
+Docker is similar in concept to Virtual Machines, except it’s much more lightweight. Instead of running an entire separate operating system (which is a massive overhead), Docker runs containers, which use the same host operating system, and only virtualize at a software level.
+
+![Alt text](Capture.PNG)
+
+## Installing Docker
+
 Firstly you can install docker from dockers website, after this has been downloaded use the following commands and then then in order to check this is working type version and run hello-world.
 https://docs.docker.com/desktop/install/windows-install/
 ```
