@@ -2,11 +2,21 @@
 
 ## Why use Docker
 
-Docker is similar in concept to Virtual Machines, except it’s much more lightweight. Instead of running an entire separate operating system (which is a massive overhead), Docker runs containers, which use the same host operating system, and only virtualize at a software level.
+Docker is similar in concept to Virtual Machines, except it’s much more lightweight. Instead of running an entire separate operating system (which is a massive overhead), Docker runs containers, which use the same host operating system, and only virtualize at a software level. Companies that use docker include ADP, Spotify and ING
 
 ![Alt text](Capture.PNG)
 
 Docker takes the same kind of version control and packaging that tools like Git and NPM provide and allows you to use it for your server software. Since your container is a single image, it makes it very easy to version track different builds of your container. And since everything is contained, it makes managing all of your dependencies much easier.
+
+### Advantages of Docker
+- Efficiency , container images can be used at every step of the deployment process
+- Compatibility and maintainaility , docker images will run the same on different servers and laptops. less time wasted setting up environments.
+- Simplicity , Code for configurations can easily be deployed
+- Rapid deployments in seconds, container for each process and does not boot an operating system
+- Continuous deployment and testing, consistent environments
+- Multi-Cloud platforms, docker has high availability.
+- Isolation of each containers contents and resources, this also ensures security.
+
 
 ## Installing Docker
 
@@ -138,6 +148,8 @@ If
 
 You can use the following commands to build and then push an image to your docker repositories, change the dockeraccount, repo and tag to the one listed, which you can find with the first command. This build command needs a Dockerfile to work.
 a basic docker file follows the following format.
+
+
 
 ```
 FROM nginx
