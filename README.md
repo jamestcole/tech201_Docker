@@ -2,11 +2,15 @@
 
 ## Why use Docker
 
-Docker is similar in concept to Virtual Machines, except it’s much more lightweight. Instead of running an entire separate operating system (which is a massive overhead), Docker runs containers, which use the same host operating system, and only virtualize at a software level. Companies that use docker include ADP, Spotify and ING
+Docker is similar in concept to Virtual Machines, except it’s much more lightweight. Instead of running an entire separate operating system (which is a massive overhead), Docker runs containers, which use the same host operating system, and only virtualize at a software level. Companies that use docker include PayPal, ADP, Spotify and ING
 
 ![Alt text](Capture.PNG)
 
 Docker takes the same kind of version control and packaging that tools like Git and NPM provide and allows you to use it for your server software. Since your container is a single image, it makes it very easy to version track different builds of your container. And since everything is contained, it makes managing all of your dependencies much easier.
+
+### Microservices
+
+Microservices are an increasingly popular architecture for building large-scale applications. Rather than using a single, monolithic codebase, applications are broken down into a collection of smaller components called microservices. This approach offers several benefits, including the ability to scale individual microservices, keep the codebase easier to understand and test, and enable the use of different programming languages, databases, and other tools for each microservice.
 
 ### Advantages of Docker
 - Efficiency , container images can be used at every step of the deployment process
@@ -23,6 +27,8 @@ Docker takes the same kind of version control and packaging that tools like Git 
 - security issues due to all containers sharing access to a single host operating systems, while containers are seperated , this is a potential weakness of having many containers in one place.
 - Not the best for storing valuable data
 
+
+
 ## Installing Docker
 
 Firstly you can install docker from dockers website, after this has been downloaded use the following commands and then then in order to check this is working type version and run hello-world.
@@ -38,11 +44,12 @@ docker run hello-world
 
 ## Docker commands
 
-Simply by typing docker you can get a list of usefull commands
+Simply by typing docker you can get a list of usefull commands.
 
 ```
 docker
 ```
+
 
 ```
 Options:
@@ -179,8 +186,9 @@ docker push dockeraccount/repo:tag
 You can tag an image with the following , as it needs a tag to be pushed , using your own reponame and dockeraccount and the changes can be commmited with docker commit.
 
 ```
-docker tag dockeraccount/repo
+
 docker commit id dockeraccount/repo
+docker tag dockeraccount/repo
 docker push dockeraccount/repo
 ```
 
