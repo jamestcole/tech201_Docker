@@ -6,6 +6,8 @@ Docker is similar in concept to Virtual Machines, except it’s much more lightw
 
 ![Alt text](Capture.PNG)
 
+Docker takes the same kind of version control and packaging that tools like Git and NPM provide and allows you to use it for your server software. Since your container is a single image, it makes it very easy to version track different builds of your container. And since everything is contained, it makes managing all of your dependencies much easier.
+
 ## Installing Docker
 
 Firstly you can install docker from dockers website, after this has been downloaded use the following commands and then then in order to check this is working type version and run hello-world.
