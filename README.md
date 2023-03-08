@@ -17,6 +17,11 @@ Docker takes the same kind of version control and packaging that tools like Git 
 - Multi-Cloud platforms, docker has high availability.
 - Isolation of each containers contents and resources, this also ensures security.
 
+### Disadvantages of docker
+
+- Speed may be lower due to use of system resources.
+- security issues due to all containers sharing access to a single host operating systems, while containers are seperated , this is a potential weakness of having many containers in one place.
+- Not the best for storing valuable data
 
 ## Installing Docker
 
