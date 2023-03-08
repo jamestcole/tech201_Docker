@@ -136,7 +136,20 @@ docker run -d -p 80:80 nginx
 If 
 ## Linking Repositories
 
-You can use the following commands to build and then push an image to your docker repositories, change the dockeraccount, repo and tag to the one listed, which you can find with the first command.
+You can use the following commands to build and then push an image to your docker repositories, change the dockeraccount, repo and tag to the one listed, which you can find with the first command. This build command needs a Dockerfile to work.
+a basic docker file follows the following format.
+
+```
+FROM nginx
+
+LABEL MAINTAINER=jcole@spartaglobal
+
+COPY index.html /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+```
 
 ```
 docker images
