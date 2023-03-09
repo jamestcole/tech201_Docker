@@ -47,3 +47,29 @@ docker push username/repo:tag
 ```
 
 ![Alt text](appwork.PNG)
+
+## Setting up your node app on AWS with docker image
+
+### Install Docker
+
+```
+curl -fsSL https://get.docker.com -o get-docker.sh
+
+sudo sh get-docker.sh
+```
+
+### Install nginx
+
+```
+docker pull jamestcole/tech201-nginx:v1
+
+sudo docker run -d -p 80:80 jamestcole/tech201-nginx:v1
+```
+
+### Install node
+
+```
+docker pull jamestcole/nodeapp-tech201-james:v1
+
+sudo docker run -d -p 80:80 jamestcole/nodeapp-tech201-james:v1
+```
