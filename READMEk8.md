@@ -10,6 +10,10 @@ Benefits of Kubernetes
 - App stability and availability in a cloud environment, Kubernetes helps you run your containerized applications reliably. It automatically places and balances containerized workloads and scales clusters appropriately to accommodate increasing demand and keep the system live. If one node in a multi-node cluster fails, the workload is redistributed to others without disrupting availability to users. It also provides self-healing capabilities and will restart, reschedule or replace a container when it fails or when nodes die. It allows you to do rolling updates to your software without downtime. 
 - Open-source benefits of Kubernetes, Kubernetes is a community-led project and fully open-source tool (at one time, the fastest-growing open-source software ever), meaning there is a huge ecosystem of other open-source tools designed for use with it. The platform’s strong support means there is continued innovation and improvements to Kubernetes, which protects an investment in the platform, meaning no lock-in to technology that soon becomes outdated.
 
+## Kubernetes architecture
+
+![Alt text](k8.png)
+
 # Seting up Kubernetes K8 on Docker
 
 Go to settings, Kubernetes in the docker desktop app and click on enable. this may take some time and may require you to restart your computer. The following command should tell you if the service is working
@@ -24,6 +28,7 @@ type the following to get a list of commands
 ```
 kuberctl
 ```
+
 
 ```
 Basic Commands (Beginner):
