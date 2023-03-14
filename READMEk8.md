@@ -14,6 +14,15 @@ Benefits of Kubernetes
 
 ![Alt text](k8.png)
 
+Master Node is the entry point for all administrative tasks which is responsible for managing the kubernetes cluster
+
+### Api Server
+Performs all the administrative tasks through the API server within the master node.
+In this REST commands are sent to the API server which validates and processes the requests.
+After requesting, the resulting state of the cluster is stored in the distributed key-value store.
+
+
+
 # Seting up Kubernetes K8 on Docker
 
 Go to settings, Kubernetes in the docker desktop app and click on enable. this may take some time and may require you to restart your computer. The following command should tell you if the service is working
@@ -95,3 +104,206 @@ Usage:
 Use "kubectl <command> --help" for more information about a given command.
 Use "kubectl options" for a list of global command-line options (applies to all commands).
 ```
+
+# Deploying Nginx on kubernetes k8
+
+First write the deployment code in a file titled nginx-deploy.yml
+
+```
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: nginx-deployment
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+
+  replicas: 3
+
+  template:
+    metadata:
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+      - name: nginx
+        image: jamestcole/tech201-nginx:v1
+        ports: 
+        - containerPort: 80
+```
+
+Second write the service code in a file titled nginx-deploy.yml
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  namespace: default
+spec:
+  ports:
+  - nodePort: 30001
+    port: 80
+
+
+    targetPort: 80
+
+  selector:
+    app: nginx
+  
+  type: NodePort
+```
+
+Then use these commands in gitbash in the correct directory that contains both files
+
+```
+kubectl create -f nginx-deploy.yml
+kubectl create -f nginx-service.yml
+kubectl get service
+```
+
+If you want to see the running services or just the autoscaling groups the following commands are usefull.
+```
+kubectl get all
+kubectl get hpa
+```
+
+When you want to delete a deployment, like to free up a given port you can use the following, this is the name in the metadata so `nginx-deployment` or `nginx-service` 
+
+```
+kubectl delete deployment <name of deployment>
+kubectl delete service <name of service>
+```
+# Deploying Node-App and Database on Kubernetes K8
+
+There needs to be a total of four yml files, 2 service and 2 deploy for both
+
+
+## Node app deployment
+
+```
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: node-deployment
+spec:
+  selector:
+    matchLabels:
+      app: node
+
+  replicas: 3
+
+  template:
+    metadata:
+      labels:
+        app: node
+
+    spec:
+      containers:
+      - name: node-app
+        image: jamestcole/nodejs-app:latest
+        ports: 
+        - containerPort: 3000
+        env:
+        - name: DB_HOST
+          value: mongodb://mongo:27017/posts
+        lifecycle:
+          postStart:
+            exec:
+              command: [node , seeds/seed.js]
+```
+
+## Node app service
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-svc
+  namespace: default
+spec:
+  ports:
+  - nodePort: 30002
+    port: 3000
+
+
+    targetPort: 3000
+
+  selector:
+    app: node
+  
+  type: NodePort
+```
+
+## Mongo deployment
+
+```
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+spec:
+  selector:
+    matchLabels:
+      app: mongo 
+  replicas: 3
+  template: 
+    metadata:
+      labels: 
+        app: mongo 
+    spec:
+      containers:
+        - name: mongo
+          image: jamestcole/mongo:latest
+          ports:
+            - containerPort: 27017 
+          volumeMounts: 
+            - name: storage
+              mountPath: /data/db 
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: mongo-pvc
+```
+
+## Mongo Service
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  selector:
+    app: mongo
+  ports:
+    - port: 27017
+      targetPort: 27017
+```
+
+## Autoscaling group
+
+this can be added to the mongo deployment file or can be standalone.
+
+```
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: myapp
+  namespace: default
+spec:
+  minReplicas: 3
+  maxReplicas: 9
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: mongo
+  targetCPUUtilizationPercentage: 50
+```
+
