@@ -187,8 +187,8 @@ You can tag an image with the following , as it needs a tag to be pushed , using
 
 ```
 
-docker commit id dockeraccount/repo
-docker tag dockeraccount/repo
+docker commit id dockeraccount/repo 
+docker tag dockeraccount/repo <tag>
 docker push dockeraccount/repo
 ```
 

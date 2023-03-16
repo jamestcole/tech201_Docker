@@ -75,7 +75,6 @@ sudo apt install docker-compose
 Git clone your repository into your instance
 ```
 git clone <githubhttpaddress>
-
 ```
 
 go to the appropiate directory (with docker compose in) and then use the docker-compose file
@@ -83,3 +82,4 @@ go to the appropiate directory (with docker compose in) and then use the docker-
 ```
 sudo docker-compose up -d
 ```
+

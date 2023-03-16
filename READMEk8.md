@@ -165,12 +165,16 @@ kubectl create -f nginx-service.yml
 kubectl get service
 ```
 
-If you want to see the running services or just the autoscaling groups the following commands are usefull.
+If you want to see the running services or just the autoscaling groups or just the pods, the following commands are usefull.
 ```
 kubectl get all
 kubectl get hpa
+kubectl get pods
 ```
-
+This is also usefull to edit the deployment
+```
+kubectl edit deploy <deployfilename>.yml
+```
 When you want to delete a deployment, like to free up a given port you can use the following, this is the name in the metadata so `nginx-deployment` or `nginx-service` 
 
 ```
